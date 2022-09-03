@@ -6,32 +6,46 @@
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white)
 ![Badge](https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot)
 
+### Status do Projeto
 
-Este é um projeto open source para fins de estudo, contudo, sua finalização prevê a disponibilização da aplicação em uma imagem docker para livre utilizaçao.
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
 
-Abstração do problema: App para realizar o registro de atividades (solicitações de serviço, ordens de serviço, controle de estoque, controle de funcionários,
-entre outras funcionalidades que auxiliam o trabalho de PCM - Planejamento e Controle da Manutenção - através das operações de um CRUD (create. read, delete, update)
 
-Projeto em estágio inicial de desenvolvimento.
+App web para realizar o registro de atividades (solicitações de serviço, ordens de serviço, controle de estoque e controle de funcionários)
+para o PCM - Planejamento e Controle da Manutenção.
 
-### Tecnologias Utilizadas:
+### Instalação:
 
-- Spring Boot + Spring Framework
-- Java
+
+Crie uma pasta e clone o projeto. Se estiver utilizando uma IDE, utilize o runner na pasta src > main > java > com.br.Maintenance.maintenance > EstoqueApplication.
+Certifique-se de ter instalado em sua máquina a JDK.
+
+        git clone https://github.com/andre-bandeli/MaintenanceManager-Rest-Spring-boot.git
+        cd MaintenanceManager-Rest-Spring-boot/
+        cd src
+        mvn install
+### Ferramentas utilizadas:
+
+- Java 18
+- SPring Boot
+- SPring Security
 - MySQL
-- JPA
-- Hibernate
-- Spring Security
-- TomCat
-- thymeleaf
-- Bootstrap
-- HTML
+- Docker
+- JUnit
+- Html + css + Bootstrap
 
-### Próximas Implementações:
 
-- Implementação do Docker
-- Implemetação de filtros de busca
-- Criação de API para fornecedores -> Se comunicando com o estoque/compra
-- Implementação de mensageria com Kafka
+### Melhorias:
 
-Além destas implementações, a idéia do app é ser um app funcional que retorne as estatísticas referente aos processos. Este também será incluído no projeto.
+- Deploy cloud
+- ampliar cobertura de testes unitários
+
+
+### Suporte
+
+- Email: andre.lbandeli@gmail.com
+- Linkedin: https://www.linkedin.com/in/andrébandeli/
+
+
+### Créditos
+

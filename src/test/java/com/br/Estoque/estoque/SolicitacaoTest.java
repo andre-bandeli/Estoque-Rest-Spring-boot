@@ -10,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@SpringBootTest(classes = Solicitacao.class)
 public class SolicitacaoTest {
 
     @Test
@@ -32,17 +31,6 @@ public class SolicitacaoTest {
         Assertions.assertEquals("José", solicitacao.getNomeSolicitante());
         Assertions.assertTrue(true, String.valueOf(true));
 
-        //Usando Mockito
-
-        Solicitacao mock = mock(Solicitacao.class);
-        when(mock.getId()).thenReturn(55l);
-
-
     }
 
-    void testaMetodosRepositorio() {
-
-
-
-    }
 }
