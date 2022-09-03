@@ -29,7 +29,7 @@ public class ListaCompraController {
     @PostMapping("/saveListaCompras")
     public String saveListaCompras(@ModelAttribute ListaCompras listaCompras, Model model) {
 
-        service.saveListaCompras(listaCompras);
+        service.salvarListaCompra(listaCompras);
         model.addAttribute("listaCompras", listaCompras);
 
         return "redirect:/api/produto";
@@ -38,27 +38,27 @@ public class ListaCompraController {
     @GetMapping("/remove/{id}")
     public String  removeProduto(@PathVariable Long id) {
 
-        service.remove(id);
+        service.deleteListaCompraById(id);
         return "/template/index";
     }
 
     @GetMapping("/view/{id}")
     public String getListaComprasById(@PathVariable("id") Long id, Model model) {
 
-        ListaCompras listaCompras = service.listaComprasPorId(id);
+        ListaCompras listaCompras = service.ListaCompraPorId(id);
         model.addAttribute("listaCompras", listaCompras);
 
         return "template/pages/estoque/listaCompraDescricao";
     }
 
-    @PutMapping("/update/{id}")
-    public String updateListaCompra(@PathVariable("id") Long id, Model model) {
-
-        ListaCompras listaCompras = new ListaCompras();
-        service.updateListaCompra(id);
-
-        model.addAttribute("listaCompras", listaCompras);
-        return  "template/pages/solicitacao/listaComprasUpdateForm";
-    }
+//    @PutMapping("/update/{id}")
+//    public String updateListaCompra(@PathVariable("id") Long id, Model model) {
+//
+//        ListaCompras listaCompras = new ListaCompras();
+//        service.updateListaCompra(id);
+//
+//        model.addAttribute("listaCompras", listaCompras);
+//        return  "template/pages/solicitacao/listaComprasUpdateForm";
+//    }
 
 }

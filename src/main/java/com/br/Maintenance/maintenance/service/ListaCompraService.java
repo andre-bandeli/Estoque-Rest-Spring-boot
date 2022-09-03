@@ -1,5 +1,6 @@
 package com.br.Maintenance.maintenance.service;
 
+import com.br.Maintenance.maintenance.model.Funcionario;
 import com.br.Maintenance.maintenance.model.ListaCompras;
 import com.br.Maintenance.maintenance.model.Ordem;
 import com.br.Maintenance.maintenance.repository.ListaCompraRepositorio;
@@ -14,42 +15,19 @@ public class ListaCompraService {
     @Autowired
     private ListaCompraRepositorio repository;
 
-    public ListaCompras saveListaCompras(ListaCompras listaCompras) {
 
-        listaCompras.setId(listaCompras.getId());
-        listaCompras.setCodigo(listaCompras.getCodigo());
-        listaCompras.setNome(listaCompras.getNome());
-        listaCompras.setDeadline(listaCompras.getDeadline());
+    public ListaCompras salvarListaCompra(ListaCompras listaCompras) {
         return repository.save(listaCompras);
     }
-
-    public List<ListaCompras> listAll(ListaCompras listaCompras) {
-        return repository.findAll();
+    public List<ListaCompras> ListaCompraList() {
+        return (List<ListaCompras>) repository.findAll();
     }
-
-    public ListaCompras listaComprasPorId(Long id) {
+    public ListaCompras ListaCompraPorId(Long id) {
         return repository.findById(id).orElse(null);
     }
-
-    public String remove(Long id) {
+    public String deleteListaCompraById(Long id) {
         repository.deleteById(id);
-        return "Produto removido da lista de compras!!" + id;
-    }
-
-    public List<ListaCompras> listaComprasHome() {
-        ListaCompras listaCompras = new ListaCompras();
-        List<ListaCompras> lista = repository.findAll();
-        return lista;
-    }
-
-    public ListaCompras updateListaCompra(Long id) {
-
-        ListaCompras listaCompras = repository.getById(id);
-        listaCompras.setCodigo(listaCompras.getCodigo());
-        listaCompras.setNome(listaCompras.getNome());
-        listaCompras.setDeadline(listaCompras.getDeadline());
-
-        return repository.save(listaCompras);
+        return "lista de compras removido!!" + id;
     }
 
 }
