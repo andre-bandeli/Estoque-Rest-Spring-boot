@@ -49,3 +49,8 @@ Certifique-se de ter instalado em sua máquina a JDK.
 
 ### Créditos
 
+
+![Captura de tela de 2022-09-03 18-13-30_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188287852-afa69827-ec86-4122-b303-19adff19e136.jpg)
+![Captura de tela de 2022-09-03 18-13-05_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188287868-66f85e69-3e4c-4274-8707-3ea953ec1857.jpg)
+![Captura de tela de 2022-09-03 18-13-15_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188287870-ef3425a1-d3f0-4e1b-b502-fdfc81eb7b9f.jpg)
+
