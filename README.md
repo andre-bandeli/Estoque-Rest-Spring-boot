@@ -37,6 +37,7 @@ Certifique-se de ter instalado em sua máquina a JDK.
 
 ### Melhorias:
 
+- CI/CD
 - Deploy cloud
 - ampliar cobertura de testes unitários
 
@@ -47,10 +48,9 @@ Certifique-se de ter instalado em sua máquina a JDK.
 - Linkedin: https://www.linkedin.com/in/andrébandeli/
 
 
-### Créditos
+![Captura de tela de 2022-09-03 18-13-30_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188288049-a242b64e-9bf4-4b59-8545-504ee3c3b44a.jpg)
+![Captura de tela de 2022-09-03 18-13-05_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188288053-0a68ceb5-b738-4fb2-8d46-81cf6aa460c6.jpg)
+![Captura de tela de 2022-09-03 18-13-15_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188288056-3d8ef50d-e821-4b12-987f-6063ea26da8b.jpg)
 
 
-![Captura de tela de 2022-09-03 18-13-30_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188287852-afa69827-ec86-4122-b303-19adff19e136.jpg)
-![Captura de tela de 2022-09-03 18-13-05_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188287868-66f85e69-3e4c-4274-8707-3ea953ec1857.jpg)
-![Captura de tela de 2022-09-03 18-13-15_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188287870-ef3425a1-d3f0-4e1b-b502-fdfc81eb7b9f.jpg)
 
