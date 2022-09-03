@@ -48,9 +48,6 @@ Certifique-se de ter instalado em sua máquina a JDK.
 - Linkedin: https://www.linkedin.com/in/andrébandeli/
 
 
-![Captura de tela de 2022-09-03 18-13-30_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188288049-a242b64e-9bf4-4b59-8545-504ee3c3b44a.jpg)
-![Captura de tela de 2022-09-03 18-13-05_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188288053-0a68ceb5-b738-4fb2-8d46-81cf6aa460c6.jpg)
-![Captura de tela de 2022-09-03 18-13-15_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188288056-3d8ef50d-e821-4b12-987f-6063ea26da8b.jpg)
-
-
-
+![Captura de tela de 2022-09-03 18-13-30_Easy-Resize com (1)](https://user-images.githubusercontent.com/87938869/188288277-082ba3c1-c77e-4f52-996f-b0510bd8699d.jpg)
+![Captura de tela de 2022-09-03 18-13-15_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188288326-1bd5fbdb-f9ef-4ef3-9fb1-405440da0b2f.jpg)
+![Captura de tela de 2022-09-03 18-13-05_Easy-Resize com](https://user-images.githubusercontent.com/87938869/188288361-7b140dd1-b205-472f-8146-0e08ab2e8706.jpg)
