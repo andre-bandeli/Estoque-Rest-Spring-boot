@@ -1,9 +1,5 @@
 package com.br.Maintenance.maintenance;
 
-import com.br.Maintenance.maintenance.DAO.ListaCompraDAO;
-import com.br.Maintenance.maintenance.DAO.OrdemDAO;
-import com.br.Maintenance.maintenance.DAO.ProdutoDAO;
-import com.br.Maintenance.maintenance.DAO.SolicitacaoDAO;
 import com.br.Maintenance.maintenance.model.*;
 import com.br.Maintenance.maintenance.service.AtivoService;
 import com.br.Maintenance.maintenance.service.OrdemService;

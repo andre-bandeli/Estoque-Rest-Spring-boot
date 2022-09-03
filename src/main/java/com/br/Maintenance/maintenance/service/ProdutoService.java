@@ -15,59 +15,18 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository repository;
 
-    public Produto saveProduto(Produto produto) {
+
+    public Produto salvarProduto(Produto produto) {
         return repository.save(produto);
     }
-
-    public List<Produto> listAll(Produto produto) {
-        return repository.findAll();
+    public List<Produto> ListProduto() {
+        return (List<Produto>) repository.findAll();
     }
-
-    public Produto produtoPorId(Long id) {
+    public Produto ListProdutoPorId(Long id) {
         return repository.findById(id).orElse(null);
     }
-
-    public String remove(Long id) {
+    public String deleteProdutoById(Long id) {
         repository.deleteById(id);
         return "Produto removido!!" + id;
     }
-
-    public Produto updateProduto(Long id) {
-
-        Produto produto = repository.getById(id);
-        produto.setCodigo(produto.getCodigo());
-        produto.setNome(produto.getNome());
-        produto.setSaldo(produto.getSaldo());
-        produto.setSaldoMin(produto.getSaldoMin());
-
-        return repository.save(produto);
-    }
-
-    public Produto entrada(Long id, int valor) {
-        Produto produto = repository.findById(id).orElse(null);
-        try {
-            produto.setSaldo((int) produto.getSaldo() + valor);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return repository.save(produto);
-    }
-
-    public Produto saida(Long id, int valor) {
-        Produto produto = repository.findById(id).orElse(null);
-        try {
-            produto.setSaldo((int) produto.getSaldo() - valor);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return repository.save(produto);
-    }
-
-    public List<Produto> produtoHome() {
-        Produto produto = new Produto();
-        List<Produto> list = repository.findAll();
-
-        return list;
-    }
-
 }

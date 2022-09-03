@@ -27,10 +27,10 @@ public class ProdutoController {
     @GetMapping
     public String ProdutoHome(Model model) {
 
-        List<Produto> l = service.produtoHome();
+        List<Produto> l = service.ListProduto();
         model.addAttribute("produto", l);
 
-        List<ListaCompras> lista = listaCompraService.listaComprasHome();
+        List<ListaCompras> lista = listaCompraService.ListaCompraList();
         model.addAttribute("lista", lista);
 
         return "template/pages/estoque/estoque";
@@ -50,7 +50,7 @@ public class ProdutoController {
     @PostMapping("/saveProduto")
     public String saveProduto(@ModelAttribute Produto produto, Model model) {
 
-        service.saveProduto(produto);
+        service.salvarProduto(produto);
         model.addAttribute("produto", produto);
 
         return "redirect:/api/produto";
@@ -59,37 +59,37 @@ public class ProdutoController {
     @GetMapping("/view/{id}")
     public String getProdutoById(@PathVariable("id") Long id, Model model) {
 
-        Produto produto = service.produtoPorId(id);
+        Produto produto = service.ListProdutoPorId(id);
         model.addAttribute("produto", produto);
 
         return "template/pages/estoque/produtoDescricao";
     }
 
-    @PutMapping("/update/{id}")
-    public String updateProduto(@PathVariable("id") Long id, Model model) {
-
-        Produto produto = new Produto();
-        service.updateProduto(id);
-
-        model.addAttribute("produto", produto);
-        return  "template/pages/estoque/produtoUpdateForm";
-    }
+//    @PutMapping("/update/{id}")
+//    public String updateProduto(@PathVariable("id") Long id, Model model) {
+//
+//        Produto produto = new Produto();
+//        service.updateProduto(id);
+//
+//        model.addAttribute("produto", produto);
+//        return  "template/pages/estoque/produtoUpdateForm";
+//    }
 
     @GetMapping("/remove/{id}")
     public String  removeProduto(@PathVariable Long id) {
 
-        service.remove(id);
+        service.deleteProdutoById(id);
         return "/template/index";
     }
 
-    @PutMapping("/entrada/{id}/{valor}")
-    public Produto entrada(@PathVariable Long id, @PathVariable int valor) {
-        return service.entrada(id, valor);
-    }
-
-    @PutMapping("/saida/{id}/{valor}")
-    public Produto saida(@PathVariable Long id, @PathVariable int valor) {
-        return service.saida(id, valor);
-    }
+//    @PutMapping("/entrada/{id}/{valor}")
+//    public Produto entrada(@PathVariable Long id, @PathVariable int valor) {
+//        return service.entrada(id, valor);
+//    }
+//
+//    @PutMapping("/saida/{id}/{valor}")
+//    public Produto saida(@PathVariable Long id, @PathVariable int valor) {
+//        return service.saida(id, valor);
+//    }
 
 }

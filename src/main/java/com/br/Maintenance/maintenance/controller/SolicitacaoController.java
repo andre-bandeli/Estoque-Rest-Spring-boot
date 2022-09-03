@@ -25,14 +25,14 @@ public class SolicitacaoController {
     public String solicitacoesHome(Model model) {
 
         Solicitacao solicitacao = new Solicitacao();
-        List<Solicitacao> list = solicitacaoService.listSolicitacoes(solicitacao);
+        List<Solicitacao> list = solicitacaoService.ListSolicitacao();
         model.addAttribute("solicitacao", list);
 
         int tamanho = list.size();
         model.addAttribute("tamanho", tamanho);
 
         Ordem ordem = new Ordem();
-        List<Ordem> listOrdem = ordemService.listOrdem(ordem);
+        List<Ordem> listOrdem = ordemService.ListOrdem();
         model.addAttribute("ordem", listOrdem);
 
         int tamanhoOrdem = listOrdem.size();
@@ -45,7 +45,7 @@ public class SolicitacaoController {
     public String solicitacoesList(Model model) {
 
         Solicitacao solicitacao = new Solicitacao();
-        List<Solicitacao> list = solicitacaoService.listSolicitacoes(solicitacao);
+        List<Solicitacao> list = solicitacaoService.ListSolicitacao();
         model.addAttribute("solicitacao", list);
 
         return "template/pages/solicitacao/solicitacaoList";
@@ -61,7 +61,7 @@ public class SolicitacaoController {
     }
     @PostMapping("/saveSolicitacao")
     public String saveSolicitacao(@ModelAttribute Solicitacao solicitacao, Model model) {
-        solicitacaoService.saveSolicitacao(solicitacao);
+        solicitacaoService.salvarSolicitacao(solicitacao);
         model.addAttribute("solicitacao", solicitacao);
         return "redirect:/api/solicitacao";
     }
@@ -69,21 +69,21 @@ public class SolicitacaoController {
     @GetMapping("/view/{id}")
     public String getSolicitacaoById(@PathVariable("id") Long id, Model model) {
 
-        Solicitacao solicitacao = solicitacaoService.getSolicitacaoById(id);
+        Solicitacao solicitacao = solicitacaoService.ListSolicitacaoPorId(id);
         model.addAttribute("solicitacao", solicitacao);
         return "template/pages/solicitacao/solicitacaoDescricao";
     }
 
-    @PutMapping("/update/{id}")
-    public String Put(@PathVariable(value = "id") long id, Model model) {
-
-        Solicitacao solicitacao = new Solicitacao();
-        solicitacaoService.updateSolicitacao(id);
-
-        model.addAttribute("solicitacao", solicitacao);
-        return  "template/pages/solicitacao/solicitacaoUpdateForm";
-
-    }
+//    @PutMapping("/update/{id}")
+//    public String Put(@PathVariable(value = "id") long id, Model model) {
+//
+//        Solicitacao solicitacao = new Solicitacao();
+//        solicitacaoService.updateSolicitacao(id);
+//
+//        model.addAttribute("solicitacao", solicitacao);
+//        return  "template/pages/solicitacao/solicitacaoUpdateForm";
+//
+//    }
 
     @GetMapping("/remove/{id}")
     public String  removeSolicitacao(@PathVariable Long id) {
