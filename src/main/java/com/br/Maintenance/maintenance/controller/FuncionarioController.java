@@ -22,17 +22,11 @@ public class FuncionarioController {
 
     @GetMapping("/add")
     public Funcionario save(Funcionario funcionario) {
-        return funcionarioService.saveFuncionario(funcionario);
+        return funcionarioService.salvarFuncionario(funcionario);
     }
-
-    @GetMapping("/addList")
-    public List<Funcionario> addListFuncionarios(List<Funcionario> funcionarios) {
-        return funcionarioService.salvarFuncionarios(funcionarios);
-    }
-
     @GetMapping("/{id}")
     public Funcionario getFuncionarioById(@PathVariable Long id) {
-        return funcionarioService.getFuncionarioById(id);
+        return funcionarioService.funconarioPorId(id);
     }
 
     @GetMapping("/remove/{id}")
@@ -40,10 +34,10 @@ public class FuncionarioController {
         return funcionarioService.deleteFuncionarioById(id);
     }
 
-    @PutMapping("/update/{id}")
-    public Funcionario updateFuncionario(Funcionario funcionario) {
-        return  funcionarioService.updateFuncionario(funcionario);
-    }
+//    @PutMapping("/update/{id}")
+//    public Funcionario updateFuncionario(Funcionario funcionario) {
+//        return  funcionarioService.updateFuncionario(funcionario);
+//    }
 
 
 }
