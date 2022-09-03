@@ -1,6 +1,7 @@
 package com.br.Maintenance.maintenance.user.service;
 
 import com.br.Maintenance.maintenance.user.model.Roles;
+import com.br.Maintenance.maintenance.user.model.User;
 import com.br.Maintenance.maintenance.user.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,7 +29,7 @@ public class SSUserDetailService implements UserDetailsService {
 
         try {
 
-            com.br.Maintenance.maintenance.user.model.User user = userRepository.findByUsername(username);
+            User user = userRepository.findByUsername(username);
 
             if (user == null) {
                 return null;
@@ -40,7 +41,7 @@ public class SSUserDetailService implements UserDetailsService {
         }
     }
 
-    private Set<GrantedAuthority> getAuthories(com.br.Maintenance.maintenance.user.model.User user) {
+    private Set<GrantedAuthority> getAuthories(User user) {
         Set<GrantedAuthority> authorities = new HashSet<>();
         for (Roles roles: user.getRoles()) {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roles.getRole());
@@ -49,5 +50,6 @@ public class SSUserDetailService implements UserDetailsService {
 
         return authorities;
     }
+
 
 }

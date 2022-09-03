@@ -18,7 +18,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -38,24 +37,25 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/home", "/h2-console/**").permitAll()
+                .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .antMatchers("/solicitacao").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll();
-
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/home")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login");
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication().withUser("user").password(passwordEncoder().encode("password")).authorities("ADMIN");
-
-        auth.userDetailsService(userDetailsServiceBean())
-                .passwordEncoder(passwordEncoder());
+        auth.inMemoryAuthentication().withUser("user").password(passwordEncoder().encode(
+                        "password")).authorities("ADMIN").and().
+                withUser("usuario").
+                password(passwordEncoder().encode("password")).authorities("USER");
     }
-
 
 }

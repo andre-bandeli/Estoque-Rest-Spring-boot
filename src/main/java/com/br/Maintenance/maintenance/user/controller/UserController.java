@@ -10,7 +10,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public ModelAndView login() {
-        ModelAndView mv = new ModelAndView("login");
+        ModelAndView mv = new ModelAndView("loginn");
         return mv;
     }
 
