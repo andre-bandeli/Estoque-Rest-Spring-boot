@@ -16,9 +16,6 @@ import java.sql.Date;
 @SpringBootApplication
 public class EstoqueApplication {
 
-	private OrdemService ordemService;
-
-
 
 	public static void main(String[] args) {
 
