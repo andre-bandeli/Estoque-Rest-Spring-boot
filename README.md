@@ -18,7 +18,7 @@ Certifique-se de ter instalado em sua máquina a JDK.
         git clone https://github.com/andre-bandeli/MaintenanceManager-Rest-Spring-boot.git
         cd MaintenanceManager-Rest-Spring-boot/
         cd src
-        mvn install
+        mvn clean install
 ### Ferramentas utilizadas:
 
 - Java 18
