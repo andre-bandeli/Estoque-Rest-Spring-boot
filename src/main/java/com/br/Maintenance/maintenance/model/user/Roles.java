@@ -1,4 +1,4 @@
-package com.br.Maintenance.maintenance.user.model;
+package com.br.Maintenance.maintenance.model.user;
 
 import javax.persistence.*;
 import java.util.Collection;

@@ -1,8 +1,8 @@
 package com.br.Maintenance.maintenance.configuration;
 
 
-import com.br.Maintenance.maintenance.user.model.Roles;
-import com.br.Maintenance.maintenance.user.model.User;
+import com.br.Maintenance.maintenance.model.user.Roles;
+import com.br.Maintenance.maintenance.model.user.User;
 import com.br.Maintenance.maintenance.user.repository.RoleRepository;
 import com.br.Maintenance.maintenance.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

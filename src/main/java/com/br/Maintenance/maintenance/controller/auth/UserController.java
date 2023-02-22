@@ -1,4 +1,4 @@
-package com.br.Maintenance.maintenance.user.controller;
+package com.br.Maintenance.maintenance.controller.auth;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

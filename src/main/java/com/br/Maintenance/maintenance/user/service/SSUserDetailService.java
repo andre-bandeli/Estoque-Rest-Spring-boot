@@ -1,7 +1,7 @@
 package com.br.Maintenance.maintenance.user.service;
 
-import com.br.Maintenance.maintenance.user.model.Roles;
-import com.br.Maintenance.maintenance.user.model.User;
+import com.br.Maintenance.maintenance.model.user.Roles;
+import com.br.Maintenance.maintenance.model.user.User;
 import com.br.Maintenance.maintenance.user.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
