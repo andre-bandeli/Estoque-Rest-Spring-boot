@@ -1,4 +1,4 @@
-package com.br.Maintenance.maintenance.controller;
+package com.br.Maintenance.maintenance.controller.ordens;
 
 import com.br.Maintenance.maintenance.model.Ordem;
 import com.br.Maintenance.maintenance.model.Solicitacao;

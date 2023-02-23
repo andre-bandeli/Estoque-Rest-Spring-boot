@@ -1,12 +1,7 @@
 package com.br.Maintenance.maintenance.model.auth;
 
 public class AuthenticationResponse {
-
     private String token;
-
-    public AuthenticationResponse(String token) {
-        this.token = token;
-    }
 
     public String getToken() {
         return token;
@@ -15,4 +10,5 @@ public class AuthenticationResponse {
     public void setToken(String token) {
         this.token = token;
     }
+
 }

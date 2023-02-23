@@ -1,4 +1,4 @@
-package com.br.Maintenance.maintenance.controller;
+package com.br.Maintenance.maintenance.controller.compras;
 
 import com.br.Maintenance.maintenance.model.ListaCompras;
 import com.br.Maintenance.maintenance.model.Ordem;

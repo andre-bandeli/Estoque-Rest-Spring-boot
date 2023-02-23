@@ -1,5 +1,10 @@
 package com.br.Maintenance.maintenance.configuration;
 
+import com.br.Maintenance.maintenance.configuration.jwt.Entrypoint;
+import com.br.Maintenance.maintenance.configuration.jwt.JwtToken;
+import com.br.Maintenance.maintenance.configuration.jwt.JwtFilter;
+import com.br.Maintenance.maintenance.service.auth.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,10 +24,21 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class Security extends WebSecurityConfigurerAdapter {
 
 
-    @Bean
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private JwtToken jwt;
+
+    @Autowired
+    private Entrypoint entrypoint;
+
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.inMemoryAuthentication().withUser("username").password(passwordEncoder().encode("password"))
+                .authorities("USER", "ADMIN");
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -30,31 +46,23 @@ public class Security extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
+    @Bean
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.inMemoryAuthentication().withUser("Pardeep").password(passwordEncoder().encode("test@123"))
-                .authorities("USER", "ADMIN");
-
-        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint).and()
+                .authenticationEntryPoint(entrypoint).and()
                 .authorizeRequests((request) -> request.antMatchers("/h2-console/**", "/api/v1/auth/login").permitAll()
                         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated())
-                .addFilterBefore(new JWTAuthenticationFilter(userService, jWTTokenHelper),
+                .addFilterBefore(new JwtFilter(userService, jwt),
                         UsernamePasswordAuthenticationFilter.class);
 
         http.csrf().disable().cors().and().headers().frameOptions().disable();
 
     }
-
-
-
-
 }
