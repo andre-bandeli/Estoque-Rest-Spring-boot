@@ -24,6 +24,10 @@ public class SolicitacaoService {
     public Solicitacao ListSolicitacaoPorId(Long id) {
         return solicitacaoRepository.findById(id).orElse(null);
     }
+
+    public List<Solicitacao> addListaSolicitacao(List<Solicitacao> solicitacaoList) {
+        return (List<Solicitacao>) solicitacaoRepository.saveAll(solicitacaoList);
+    }
     public String deleteSolicitacaoById(Long id) {
         solicitacaoRepository.deleteById(id);
         return "Solicitacao removido!!" + id;
