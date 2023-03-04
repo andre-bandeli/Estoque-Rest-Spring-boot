@@ -5,10 +5,12 @@ import com.br.Maintenance.maintenance.service.OrdemService;
 import com.br.Maintenance.maintenance.model.Solicitacao;
 import com.br.Maintenance.maintenance.service.SolicitacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,19 +22,14 @@ public class SolicitacaoServicoController {
     @Autowired
     private SolicitacaoService solicitacaoService;
 
-    @GetMapping("/list")
-    @CrossOrigin(origins = "http://localhost:3000/ss")
-    public List<Solicitacao> solicitacoesList() {
-        return solicitacaoService.ListSolicitacao();
-    }
-    @GetMapping("get/{id}")
-    public Optional<Solicitacao> getSolicitacao(@PathVariable Long id) {
-        return Optional.ofNullable(solicitacaoService.ListSolicitacaoPorId(id));
-    }
-
     @PostMapping("/add")
     public Solicitacao addSolicitacao(@RequestBody Solicitacao solicitacao) {
-        return solicitacaoService.salvarSolicitacao(solicitacao);
+        return solicitacaoService.addSolicitacao(solicitacao);
+    }
+
+    @GetMapping("get/{id}")
+    public Optional<Solicitacao> getSolicitacao(@PathVariable Long id) {
+        return solicitacaoService.getSolicitacaoById(id);
     }
 
     @PostMapping("/addlista")
@@ -40,8 +37,30 @@ public class SolicitacaoServicoController {
         return solicitacaoService.addListaSolicitacao(solicitacaoList);
     }
 
+    @GetMapping("/list")
+    @CrossOrigin(origins = "http://localhost:3000/ss")
+    public List<Solicitacao> solicitacoesList() {
+        return solicitacaoService.listAllSolicitacao();
+    }
+
     @GetMapping("/remove/{id}")
     public void  removeSolicitacao(@PathVariable Long id) {
         solicitacaoService.deleteSolicitacaoById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Solicitacao> updateSolicitacaoById(@PathVariable(value = "id") Long id,
+                                                             @RequestBody Solicitacao solicitacaoDetails) {
+        int codigo = solicitacaoDetails.getCodigo();
+        String maquina = solicitacaoDetails.getMaquina();
+        String setor = solicitacaoDetails.getSetor();
+        String nomeSolicitante = solicitacaoDetails.getNomeSolicitante();
+        Date dataSolicitacao = solicitacaoDetails.getDataSolicitacao();
+        String descricao = solicitacaoDetails.getDescricao();
+        boolean isUrgente = solicitacaoDetails.getIs_urgente();
+
+        solicitacaoService.updateSolicitacaoById(id, codigo, maquina, setor, nomeSolicitante, dataSolicitacao, descricao, isUrgente);
+
+        return ResponseEntity.ok().body(solicitacaoDetails);
     }
 }

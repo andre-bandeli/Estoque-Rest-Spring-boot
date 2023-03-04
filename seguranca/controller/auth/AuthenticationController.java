@@ -1,13 +1,11 @@
 package com.br.Maintenance.maintenance.controller.auth;
 
 import java.security.NoSuchAlgorithmException;
-import java.security.Principal;
 import java.security.spec.InvalidKeySpecException;
 
 import com.br.Maintenance.maintenance.configuration.jwt.JwtToken;
 import com.br.Maintenance.maintenance.model.auth.AuthenticationRequest;
 import com.br.Maintenance.maintenance.model.auth.AuthenticationResponse;
-import com.br.Maintenance.maintenance.model.user.UserDescriptionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

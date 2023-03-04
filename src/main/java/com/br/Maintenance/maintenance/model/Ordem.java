@@ -32,11 +32,6 @@ public class Ordem {
     public Ordem() {
     }
 
-    @PrePersist
-    public void onPrepersist() {
-        solicitacaoServico.setActive(true);
-    }
-
     public Long getId() {
         return id;
     }

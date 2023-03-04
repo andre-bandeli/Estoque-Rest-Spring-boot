@@ -24,10 +24,9 @@ public class Solicitacao {
     @Column(name = "data_solicitacao")
     private Date dataSolicitacao;
 
-    @Column(name = "is_ordem")
-    private Boolean isOrdemServico = false;
-
     private String descricao;
+
+    private boolean is_urgente;
 
     public Solicitacao() {
     }
@@ -80,14 +79,6 @@ public class Solicitacao {
         this.dataSolicitacao = dataSolicitacao;
     }
 
-    public Boolean getActive() {
-        return isOrdemServico;
-    }
-
-    public void setActive(Boolean active) {
-        isOrdemServico = active;
-    }
-
     public String getDescricao() {
         return descricao;
     }
@@ -96,5 +87,11 @@ public class Solicitacao {
         this.descricao = descricao;
     }
 
+    public boolean getIs_urgente() {
+        return is_urgente;
+    }
 
+    public void setIs_urgente(boolean is_urgente) {
+        this.is_urgente = is_urgente;
+    }
 }
