@@ -43,7 +43,8 @@ public class SolicitacaoServicoController {
         return solicitacaoService.listAllSolicitacao();
     }
 
-    @GetMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
+    @CrossOrigin(origins = "http://localhost:3000/ss")
     public void  removeSolicitacao(@PathVariable Long id) {
         solicitacaoService.deleteSolicitacaoById(id);
     }
@@ -58,8 +59,9 @@ public class SolicitacaoServicoController {
         Date dataSolicitacao = solicitacaoDetails.getDataSolicitacao();
         String descricao = solicitacaoDetails.getDescricao();
         boolean isUrgente = solicitacaoDetails.getIs_urgente();
+        boolean status = solicitacaoDetails.getStatus();
 
-        solicitacaoService.updateSolicitacaoById(id, codigo, maquina, setor, nomeSolicitante, dataSolicitacao, descricao, isUrgente);
+        solicitacaoService.updateSolicitacaoById(id, codigo, maquina, setor, nomeSolicitante, dataSolicitacao, descricao, isUrgente, status);
 
         return ResponseEntity.ok().body(solicitacaoDetails);
     }

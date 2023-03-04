@@ -28,6 +28,8 @@ public class Solicitacao {
 
     private boolean is_urgente;
 
+    private boolean status;
+
     public Solicitacao() {
     }
 
@@ -93,5 +95,13 @@ public class Solicitacao {
 
     public void setIs_urgente(boolean is_urgente) {
         this.is_urgente = is_urgente;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

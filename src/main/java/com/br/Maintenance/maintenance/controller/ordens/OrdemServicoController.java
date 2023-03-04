@@ -1,72 +1,64 @@
 package com.br.Maintenance.maintenance.controller.ordens;
 
 import com.br.Maintenance.maintenance.model.Ordem;
+import com.br.Maintenance.maintenance.model.Solicitacao;
 import com.br.Maintenance.maintenance.service.OrdemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/api/v1/os")
 public class OrdemServicoController {
 
     @Autowired
     private OrdemService ordemService;
 
-    @GetMapping
-    public String homeOrdem(Model model) {
 
-        Ordem ordem = new Ordem();
-        List<Ordem> list = ordemService.ListOrdem();
-        model.addAttribute("ordem", list);
-
-        return "template/pages/solicitacao/ordem";
+    @PostMapping("/add")
+    public Ordem saveOrdem(@RequestBody Ordem ordem) {
+        return ordemService.addOrdem(ordem);
     }
 
-    @GetMapping("/add")
-    public String addOrdem(Model model) {
-
-        Ordem ordem = new Ordem();
-        model.addAttribute("ordem", ordem);
-
-        return "template/pages/solicitacao/ordemAddForm";
+    @GetMapping("/list")
+    public List<Ordem> getListOrdem() {
+        return ordemService.getListaOrdem();
     }
 
-    @PostMapping("/saveOrdem")
-    public String saveOrdem(@ModelAttribute Ordem ordem, Model model) {
-
-        ordemService.salvarOrdem(ordem);
-        model.addAttribute("ordem", ordem);
-
-        return "redirect:/api/ordem";
+    @GetMapping("/getordem/{id}")
+    public Optional<Ordem> getOrdem(Long id) {
+        return ordemService.getOrdem(id);
     }
 
-    @GetMapping("/view/{id}")
-    public String getOrdemById(@PathVariable("id") Long id, Model model) {
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Ordem> updateOrdemById(@PathVariable(value = "id") Long id,
+                                                             @RequestBody Ordem ordem) {
+        int codigo = ordem.getCodigo();
+        String maquina = ordem.getMaquina();
+        String setor = ordem.getSetor();
+        String nomeSolicitante = ordem.getNomeSolicitante();
+        Date dataSolicitacao = ordem.getDataSolicitacao();
+        String descricao = ordem.getDescricao();
+        boolean isUrgente = ordem.getIs_urgente();
+        boolean status = ordem.getStatus();
+        Date dataFechamento = ordem.getDataFechamento();
+        String tecnicoResponsavel = ordem.getTecnicoResponsavel();
+        String observacoes = ordem.getObservacoes();
 
-        Ordem ordem = ordemService.ListOrdemPorId(id);
-        model.addAttribute("ordem", ordem);
+        ordemService.updateOrdemById(id, codigo, maquina, setor, nomeSolicitante, dataSolicitacao, descricao, isUrgente, status, dataFechamento, tecnicoResponsavel, observacoes);
 
-        return "template/pages/solicitacao/ordemDescricao";
+        return ResponseEntity.ok().body(ordem);
     }
 
-//    @PutMapping("/update/{id}")
-//    public String updateOrdem(@PathVariable("id") Long id, Model model) {
-//
-//        Ordem ordem = new Ordem();
-//        ordemService.updateOrdem(id);
-//
-//        model.addAttribute("ordem", ordem);
-//        return  "template/pages/solicitacao/ordemUpdateForm";
-//    }
-
-    @GetMapping("/remove/{id}")
-    public String  removeOrdem(@PathVariable Long id) {
+    @DeleteMapping("/delete/{id}")
+    public void deleteOrdem(@PathVariable Long id) {
         ordemService.deleteOrdemById(id);
-        return "redirect:/solicitacao";
     }
 
 

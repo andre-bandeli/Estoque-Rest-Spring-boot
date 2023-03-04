@@ -36,7 +36,7 @@ public class SolicitacaoService {
         return "Solicitacao removido!!" + id;
     }
 
-    public void updateSolicitacaoById(Long id, int codigo, String maquina, String setor, String nomeSolicitante, Date dataSolicitacao, String descricao, boolean isUrgente) {
+    public void updateSolicitacaoById(Long id, int codigo, String maquina, String setor, String nomeSolicitante, Date dataSolicitacao, String descricao, boolean isUrgente, boolean status) {
         solicitacaoRepository.findById(id).ifPresent(solicitacao -> {
             solicitacao.setCodigo(codigo);
             solicitacao.setMaquina(maquina);
@@ -45,6 +45,7 @@ public class SolicitacaoService {
             solicitacao.setDataSolicitacao(dataSolicitacao);
             solicitacao.setDescricao(descricao);
             solicitacao.setIs_urgente(isUrgente);
+            solicitacao.setStatus(status);
             solicitacaoRepository.save(solicitacao);
         });
     }
