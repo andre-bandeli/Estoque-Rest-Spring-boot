@@ -4,14 +4,16 @@ package com.br.Maintenance.maintenance.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
-public class Ativos {
+public class Maquina {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    private String nome;
 
     @NotNull
     @Column(name = "codigo")
@@ -23,17 +25,15 @@ public class Ativos {
 
     @NotNull
     @Column(name = "dataInicioOperacao")
-    private String dataInicioOperacao;
+    private Date dataInicioOperacao;
 
     @NotNull
     @Column(name = "nivelPrioridade")
     private int nivelPrioridade;
 
-    @NotNull
-    @Column(name = "tipo")
-    private String tipo;
+    private boolean isActive;
 
-    public Ativos() {
+    public Maquina() {
     }
 
     public long getId() {
@@ -60,11 +60,11 @@ public class Ativos {
         this.setor = setor;
     }
 
-    public String getDataInicioOperacao() {
+    public Date getDataInicioOperacao() {
         return dataInicioOperacao;
     }
 
-    public void setDataInicioOperacao(String dataInicioOperacao) {
+    public void setDataInicioOperacao(Date dataInicioOperacao) {
         this.dataInicioOperacao = dataInicioOperacao;
     }
 
@@ -76,11 +76,19 @@ public class Ativos {
         this.nivelPrioridade = nivelPrioridade;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean active) {
+        isActive = active;
     }
 }

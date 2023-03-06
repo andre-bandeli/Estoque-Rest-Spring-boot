@@ -22,7 +22,6 @@ public class SolicitacaoTest {
         solicitacao.setMaquina("Corte");
         solicitacao.setSetor("Tecelaria");
         solicitacao.setNomeSolicitante("José");
-        solicitacao.setActive(true);
 
         Assertions.assertEquals(55, solicitacao.getId());
         Assertions.assertEquals(55, solicitacao.getCodigo());

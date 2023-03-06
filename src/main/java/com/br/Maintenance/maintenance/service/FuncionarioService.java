@@ -1,7 +1,6 @@
 package com.br.Maintenance.maintenance.service;
 
 
-import com.br.Maintenance.maintenance.model.Ativos;
 import com.br.Maintenance.maintenance.model.Funcionario;
 import com.br.Maintenance.maintenance.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
