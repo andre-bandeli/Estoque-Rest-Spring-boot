@@ -38,7 +38,7 @@ public class SolicitacaoServicoController {
     }
 
     @GetMapping("/list")
-    @CrossOrigin(origins = "http://localhost:3000/ss")
+    @CrossOrigin(origins = {"http://localhost:3000/ss", "http://localhost:3000/new-ordem"})
     public List<Solicitacao> solicitacoesList() {
         return solicitacaoService.listAllSolicitacao();
     }
@@ -59,7 +59,7 @@ public class SolicitacaoServicoController {
         Date dataSolicitacao = solicitacaoDetails.getDataSolicitacao();
         String descricao = solicitacaoDetails.getDescricao();
         boolean isUrgente = solicitacaoDetails.getIs_urgente();
-        boolean status = solicitacaoDetails.getStatus();
+        String status = solicitacaoDetails.getStatus();
 
         solicitacaoService.updateSolicitacaoById(id, codigo, maquina, setor, nomeSolicitante, dataSolicitacao, descricao, isUrgente, status);
 

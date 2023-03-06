@@ -28,7 +28,7 @@ public class Solicitacao {
 
     private boolean is_urgente;
 
-    private boolean status;
+    private String status;
 
     public Solicitacao() {
     }
@@ -97,11 +97,11 @@ public class Solicitacao {
         this.is_urgente = is_urgente;
     }
 
-    public boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

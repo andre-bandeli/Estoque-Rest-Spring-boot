@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/os")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class OrdemServicoController {
 
     @Autowired
@@ -25,7 +26,6 @@ public class OrdemServicoController {
     public Ordem saveOrdem(@RequestBody Ordem ordem) {
         return ordemService.addOrdem(ordem);
     }
-
     @GetMapping("/list")
     public List<Ordem> getListOrdem() {
         return ordemService.getListaOrdem();
@@ -46,7 +46,7 @@ public class OrdemServicoController {
         Date dataSolicitacao = ordem.getDataSolicitacao();
         String descricao = ordem.getDescricao();
         boolean isUrgente = ordem.getIs_urgente();
-        boolean status = ordem.getStatus();
+        String status = ordem.getStatus();
         Date dataFechamento = ordem.getDataFechamento();
         String tecnicoResponsavel = ordem.getTecnicoResponsavel();
         String observacoes = ordem.getObservacoes();

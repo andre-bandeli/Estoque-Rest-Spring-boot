@@ -4,6 +4,7 @@ import com.br.Maintenance.maintenance.model.ListaCompras;
 import com.br.Maintenance.maintenance.model.Ordem;
 import com.br.Maintenance.maintenance.repository.OrdemRepository;
 import com.br.Maintenance.maintenance.model.Solicitacao;
+import com.br.Maintenance.maintenance.repository.SolicitacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +20,22 @@ public class OrdemService {
     @Autowired
     private OrdemRepository ordemRepository;
 
+    @Autowired
+    private SolicitacaoRepository solicitacaoRepository;
+
    // CRUD - CREATE READ UPDATE DELETE
 
     public Ordem addOrdem(Ordem ordem) {
-        return ordemRepository.save(ordem);
+
+        ordemRepository.save(ordem);
+
+        Long solicitacaoId = ordem.getId();
+        Solicitacao solicitacao = solicitacaoRepository.findById(solicitacaoId).orElse(null);
+
+        solicitacao.setStatus(ordem.getStatus());
+        solicitacaoRepository.save(solicitacao);
+
+        return  ordem;
     }
 
     public List<Ordem> getListaOrdem() {
@@ -33,7 +46,7 @@ public class OrdemService {
         return ordemRepository.findById(id);
     }
 
-    public void updateOrdemById(Long id, int codigo, String maquina, String setor, String nomeSolicitante, Date dataSolicitacao, String descricao, boolean isUrgente, boolean status, Date dataFechamento, String tecnicoResponsavel, String observacoes ) {
+    public void updateOrdemById(Long id, int codigo, String maquina, String setor, String nomeSolicitante, Date dataSolicitacao, String descricao, boolean isUrgente, String status, Date dataFechamento, String tecnicoResponsavel, String observacoes ) {
         ordemRepository.findById(id).ifPresent(ordem -> {
             ordem.setCodigo(codigo);
             ordem.setMaquina(maquina);

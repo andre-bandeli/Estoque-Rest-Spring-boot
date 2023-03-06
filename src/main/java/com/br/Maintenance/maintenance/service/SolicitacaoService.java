@@ -29,14 +29,14 @@ public class SolicitacaoService {
     }
 
     public List<Solicitacao> listAllSolicitacao() {
-        return (List<Solicitacao>) solicitacaoRepository.findAll();
+        return (List<Solicitacao>) solicitacaoRepository.findSolicitacoesAbertas();
     }
     public String deleteSolicitacaoById(Long id) {
         solicitacaoRepository.deleteById(id);
         return "Solicitacao removido!!" + id;
     }
 
-    public void updateSolicitacaoById(Long id, int codigo, String maquina, String setor, String nomeSolicitante, Date dataSolicitacao, String descricao, boolean isUrgente, boolean status) {
+    public void updateSolicitacaoById(Long id, int codigo, String maquina, String setor, String nomeSolicitante, Date dataSolicitacao, String descricao, boolean isUrgente, String status) {
         solicitacaoRepository.findById(id).ifPresent(solicitacao -> {
             solicitacao.setCodigo(codigo);
             solicitacao.setMaquina(maquina);
