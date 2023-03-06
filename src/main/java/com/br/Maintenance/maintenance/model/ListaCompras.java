@@ -2,6 +2,7 @@ package com.br.Maintenance.maintenance.model;
 
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "lista_compras")
@@ -10,9 +11,9 @@ public class ListaCompras {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nome;
-    private Long codigo;
-    private String deadline;
+    private String nomeProduto;
+    private Long quantidade;
+    private Date deadline;
 
     public ListaCompras() {
     }
@@ -25,27 +26,27 @@ public class ListaCompras {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 
-    public Long getCodigo() {
-        return codigo;
+    public Long getQuantidade() {
+        return quantidade;
     }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setQuantidade(Long quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public String getDeadline() {
+    public Date getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(String deadline) {
+    public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 }

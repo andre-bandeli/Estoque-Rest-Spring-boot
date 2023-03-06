@@ -2,94 +2,65 @@ package com.br.Maintenance.maintenance.controller.produtos;
 
 
 import com.br.Maintenance.maintenance.model.ListaCompras;
-import com.br.Maintenance.maintenance.model.Ordem;
 import com.br.Maintenance.maintenance.model.Produto;
+import com.br.Maintenance.maintenance.model.Solicitacao;
 import com.br.Maintenance.maintenance.service.ListaCompraService;
 import com.br.Maintenance.maintenance.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
-@Controller()
-@RequestMapping("/api/produto")
+@RestController()
+@RequestMapping("/api/v1/produto")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class ProdutoController {
 
     @Autowired
     private ProdutoService service;
 
-    @Autowired
-    private ListaCompraService listaCompraService;
-
-
-    @GetMapping
-    public String ProdutoHome(Model model) {
-
-        List<Produto> l = service.ListProduto();
-        model.addAttribute("produto", l);
-
-        List<ListaCompras> lista = listaCompraService.ListaCompraList();
-        model.addAttribute("lista", lista);
-
-        return "template/pages/estoque/estoque";
+    @PostMapping("/add")
+    public Produto addProduto(@RequestBody Produto produto) {
+        return service.addProduto(produto);
     }
 
-
-    @GetMapping("/add")
-    public String addProduto(Model model) {
-        // create model attribute to bind form data
-        Produto produto = new Produto();
-        model.addAttribute("produto", produto);
-
-        return "template/pages/estoque/produtoAddForm";
+    @GetMapping("get/{id}")
+    public Optional<Produto> getProduto(@PathVariable Long id) {
+        return service.getProdutoById(id);
     }
 
-
-    @PostMapping("/saveProduto")
-    public String saveProduto(@ModelAttribute Produto produto, Model model) {
-
-        service.salvarProduto(produto);
-        model.addAttribute("produto", produto);
-
-        return "redirect:/api/produto";
+    @PostMapping("/addlista")
+    public List<Produto> addListaProduto(@RequestBody List<Produto> produtoList) {
+        return service.addListaProduto(produtoList);
     }
 
-    @GetMapping("/view/{id}")
-    public String getProdutoById(@PathVariable("id") Long id, Model model) {
-
-        Produto produto = service.ListProdutoPorId(id);
-        model.addAttribute("produto", produto);
-
-        return "template/pages/estoque/produtoDescricao";
+    @GetMapping("/list")
+    @CrossOrigin(origins = {"http://localhost:3000/ss", "http://localhost:3000/new-ordem"})
+    public List<Produto> produtoList() {
+        return service.produtoList();
     }
 
-//    @PutMapping("/update/{id}")
-//    public String updateProduto(@PathVariable("id") Long id, Model model) {
-//
-//        Produto produto = new Produto();
-//        service.updateProduto(id);
-//
-//        model.addAttribute("produto", produto);
-//        return  "template/pages/estoque/produtoUpdateForm";
-//    }
-
-    @GetMapping("/remove/{id}")
-    public String  removeProduto(@PathVariable Long id) {
-
+    @DeleteMapping("/remove/{id}")
+    @CrossOrigin(origins = "http://localhost:3000/ss")
+    public void  removeSolicitacao(@PathVariable Long id) {
         service.deleteProdutoById(id);
-        return "/template/index";
     }
 
-//    @PutMapping("/entrada/{id}/{valor}")
-//    public Produto entrada(@PathVariable Long id, @PathVariable int valor) {
-//        return service.entrada(id, valor);
-//    }
-//
-//    @PutMapping("/saida/{id}/{valor}")
-//    public Produto saida(@PathVariable Long id, @PathVariable int valor) {
-//        return service.saida(id, valor);
-//    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Produto> updateProdutoById(@PathVariable(value = "id") Long id,
+                                                             @RequestBody Produto produto) {
+        Long codigo = produto.getCodigo();
+        String nome = produto.getNome();
+        int saldo = produto.getSaldo();
+        int saldoMin = produto.getSaldoMin();
 
+        service.updateProdutoById(id, codigo, nome, saldo, saldoMin);
+
+        return ResponseEntity.ok().body(produto);
+    }
 }

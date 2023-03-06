@@ -1,32 +1,47 @@
 package com.br.Maintenance.maintenance.service;
 
-import com.br.Maintenance.maintenance.model.ListaCompras;
-import com.br.Maintenance.maintenance.model.Ordem;
+import com.br.Maintenance.maintenance.model.Produto;
 import com.br.Maintenance.maintenance.model.Produto;
 import com.br.Maintenance.maintenance.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProdutoService {
 
     @Autowired
-    private ProdutoRepository repository;
+    private ProdutoRepository produtoRepository;
 
+    public Produto addProduto(Produto solicitacao) {
+        return produtoRepository.save(solicitacao);
+    }
+    public List<Produto> produtoList() {
+        return (List<Produto>) produtoRepository.findAll();
+    }
 
-    public Produto salvarProduto(Produto produto) {
-        return repository.save(produto);
+    public Optional<Produto> getProdutoById(Long id) {
+        return produtoRepository.findById(id);
     }
-    public List<Produto> ListProduto() {
-        return (List<Produto>) repository.findAll();
+
+    public List<Produto> addListaProduto(List<Produto> solicitacaoList) {
+        return (List<Produto>) produtoRepository.saveAll(solicitacaoList);
     }
-    public Produto ListProdutoPorId(Long id) {
-        return repository.findById(id).orElse(null);
+    public void deleteProdutoById(Long id) {
+        produtoRepository.deleteById(id);
     }
-    public String deleteProdutoById(Long id) {
-        repository.deleteById(id);
-        return "Produto removido!!" + id;
+
+    public void updateProdutoById(Long id, Long codigo, String nome, int saldo, int saldoMin) {
+        produtoRepository.findById(id).ifPresent(produto -> {
+            produto.setCodigo(codigo);
+            produto.setNome(nome);
+            produto.setSaldo(saldo);
+            produto.setSaldoMin(saldoMin);
+
+            produtoRepository.save(produto);
+        });
     }
 }

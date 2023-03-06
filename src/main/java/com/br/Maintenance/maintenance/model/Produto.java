@@ -6,9 +6,6 @@ import javax.persistence.*;
 @Table(name = "produto")
 public class Produto {
 
-    public Produto() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,6 +13,10 @@ public class Produto {
     private String nome;
     private int saldo;
     private int saldoMin;
+
+    public Produto() {
+    }
+
 
     public Long getId() {
         return id;

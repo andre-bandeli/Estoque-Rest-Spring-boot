@@ -2,7 +2,6 @@ package com.br.Estoque.estoque;
 
 
 import com.br.Maintenance.maintenance.model.Ordem;
-import com.br.Maintenance.maintenance.model.Produto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
