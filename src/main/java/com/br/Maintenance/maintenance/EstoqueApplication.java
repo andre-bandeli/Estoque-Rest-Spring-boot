@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.annotation.PostConstruct;
 import java.sql.Date;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
+@EnableSwagger2
 public class EstoqueApplication {
 
 	@Autowired
@@ -38,14 +40,16 @@ public class EstoqueApplication {
 		//authorityList.add(createAuthority("ADMIN","Admin role"));
 
 		User user=new User();
-		user.setUserName("username");
-		user.setEmail("teste@teste.com");
+		user.setUserName("username10");
+		user.setEmail("teste10@teste.com");
 		user.setPassword(passwordEncoder.encode("password"));
+		System.out.println(user.getPassword());
 		user.setEnabled(true);
 		user.setAuthorities(authorityList);
 		userRepository.save(user);
 
 	}
+
 	private Authority createAuthority(String roleCode,String roleDescription) {
 		Authority authority=new Authority();
 		authority.setRoleCode(roleCode);
